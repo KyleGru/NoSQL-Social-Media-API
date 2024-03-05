@@ -6,7 +6,6 @@ const thoughtController = {
     getAllThoughts(req, res) {
         Thought.find({})
             .select('-__v')
-            .sort({ _id: XX})
             .then(ThoughtData => res.json(ThoughtData))
             .catch((err) => res.json(err))
     },
@@ -83,6 +82,7 @@ const thoughtController = {
 
     // Add a reaction to a thought by id
     addReaction({ params, body }, res) {
+        console.log("added reaction")
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
             { $push: { reactions: body } },
