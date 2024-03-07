@@ -18,8 +18,6 @@ const userController = {
     // Get a single user by id
     getUserById(req, res) {
         User.findOne({ _id: req.params.id })
-        .populate({ path: 'thought', select: '-__v' })
-        .populate({ path: 'friend', select: '-__v' })
         .select('-__v')
         .then((userData) => {
             if (!userData) {

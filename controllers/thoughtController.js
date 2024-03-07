@@ -13,7 +13,7 @@ const thoughtController = {
     // Get thought by id
     getThoughtById({ params }, res) {
         Thought.findOne({ _id: params.id })
-        .populate({ path: 'reactions', select: '-__v' })
+        // .populate({ path: 'reactions', select: '-__v' })
         .then(ThoughtData => {
             if(!ThoughtData) {
                 res.status(404).json({ message: 'No thought found with this id' });
@@ -106,6 +106,7 @@ const thoughtController = {
             { new: true }
         )
         .then(ThoughtData => {
+            console.log('reaction removed')
             if(!ThoughtData) {
                 res.status(404).json({ message: 'No thought found with this id' });
                 return;
